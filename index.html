@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>for sochi ♡</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair_Display:wght@400&family=Instrument_Serif:ital@0;1&display=swap">
+</head>
+<body class="bg-[#ffe4e6] font-serif overflow-x-hidden">
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-[#ffe4e6]/90 backdrop-blur-md border-b border-rose-100">
+        <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-x-3 text-rose-400">
+                <span class="text-xl">♡</span><span class="font-serif text-sm tracking-[0.065em] uppercase">sochi &amp; me</span>
+            </div>
+
+```
+        <div class="hidden sm:flex items-center gap-8 text-xs uppercase tracking-widest text-rose-300">
+            <a href="#" onclick="jumpToStep(0)" class="hover:text-rose-500 transition-colors">chapter 1</a>
+            <a href="#" onclick="jumpToStep(1)" class="hover:text-rose-500 transition-colors">chapter 2</a>
+            <a href="#" onclick="jumpToStep(2)" class="hover:text-rose-500 transition-colors">chapter 3</a>
+            <a href="#" onclick="jumpToStep(3)" class="hover:text-rose-500 transition-colors">chapter 4</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero -->
+<section id="hero" 
+         class="relative h-screen flex items-center justify-center bg-[#2a0f1f] text-white overflow-hidden">
+    
+    <!-- Canvas for hearts -->
+    <canvas 
+        id="heartCanvas" 
+        class="absolute inset-0 pointer-events-none z-0"
+        width="1920" 
+        height="1080"></canvas>
+    
+    <!-- Canvas for butterflies -->
+    <canvas 
+        id="butterflyCanvas" 
+        class="absolute inset-0 pointer-events-none z-5"
+        width="1920" 
+        height="1080"></canvas>
+    
+    <!-- Gradient overlay -->
+    <div class="absolute inset-0 bg-gradient-to-t from-[#2a0f1f] via-[#2a0f1f]/70 to-transparent z-10"></div>
+    
+    <div class="relative z-20 text-center px-6">
+        <div class="mb-3 inline-flex items-center gap-2 text-rose-300 text-xs tracking-[0.065em]">
+            <span class="block h-px w-6 bg-rose-300"></span> ALWAYS AND FOREVER 🦋 <span class="block h-px w-6 bg-rose-300"></span>
+        </div>
+        
+        <h1 class="font-serif text-[4rem] sm:text-[7rem] md:text-[9rem] leading-[0.85] tracking-tight mb-4">
+            Sochima<span class="text-rose-400">.</span>
+        </h1>
+        
+        <p class="uppercase text-[11px] sm:text-xs tracking-[0.1em] font-medium mb-10 text-rose-200">my favorite person in every universe</p>
+        
+        <button onclick="startJourney()" 
+            id="start-btn"
+            class="bg-rose-400 hover:bg-rose-500 transition-all duration-300 text-white px-8 sm:px-10 py-4 rounded-full text-xs sm:text-sm tracking-widest uppercase flex items-center gap-3 mx-auto group">
+            <span>Click me Bibi❤️</span> 
+            <span class="inline-block transition-transform group-hover:rotate-12">→</span>
+        </button>
+    </div>
+</section>
+
+<!-- Journey Container -->
+<section id="journey-section" class="hidden py-12 bg-[#ffe4e6]">
+    <!-- Stepper -->
+    <div class="sticky top-[73px] z-40 bg-[#ffe4e6]/95 backdrop-blur-sm border-b border-rose-100 shadow-sm">
+        <div class="max-w-4xl mx-auto px-6">
+            <!-- Progress bar -->
+            <div class="flex justify-between items-center py-6 relative">
+                <!-- Line -->
+                <div class="absolute top-1/2 left-0 right-0 h-px bg-rose-100 -translate-y-1/2"></div>
+                
+                <!-- Steps -->
+                <div onclick="jumpToStep(0)" id="step-dot-0"
+                     class="step-dot relative z-10 w-6 h-6 flex-shrink-0 rounded-full bg-rose-400 cursor-pointer flex items-center justify-center">
+                    <span class="text-[9px] text-white font-medium">1</span>
+                </div>
+                
+                <div onclick="jumpToStep(1)" id="step-dot-1"
+                     class="step-dot relative z-10 w-6 h-6 flex-shrink-0 rounded-full bg-rose-100 cursor-pointer flex items-center justify-center">
+                    <span class="text-[9px] text-rose-300 font-medium">2</span>
+                </div>
+                
+                <div onclick="jumpToStep(2)" id="step-dot-2"
+                     class="step-dot relative z-10 w-6 h-6 flex-shrink-0 rounded-full bg-rose-100 cursor-pointer flex items-center justify-center">
+                    <span class="text-[9px] text-rose-300 font-medium">3</span>
+                </div>
+                
+                <div onclick="jumpToStep(3)" id="step-dot-3"
+                     class="step-dot relative z-10 w-6 h-6 flex-shrink-0 rounded-full bg-rose-100 cursor-pointer flex items-center justify-center">
+                    <span class="text-[9px] text-rose-300 font-medium">4</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Content Area -->
+    <div class="max-w-3xl mx-auto px-5 md:px-6 pt-8 pb-20">
+        
+        <!-- Step 0 -->
+        <div id="content-0" class="journey-step">
+            <div class="text-center mb-12">
+                <div class="inline-flex items-center justify-center w-px h-14 bg-rose-300 mb-4"></div>
+                <p class="uppercase text-rose-400 text-xs tracking-[0.065em] font-medium mb-3">Chapter One</p>
+                <h2 class="font-serif text-[2.75rem] sm:text-[3.5rem] md:text-[4rem] leading-tight tracking-tight mb-4">The day you<br>became my world</h2>
+            </div>
+            
+            <div class="bg-white/80 rounded-3xl p-8 md:p-10 mb-8 border border-rose-100">
+                <p class="italic text-base leading-relaxed text-rose-700">
+                    Heyy Sochi💞…<br><br>
+                    I didn't have some dramatic moment where everything stopped…
+                    I just realized, over time, that life feels lighter and better with you in it…and that feeling hasn't gone away.
+                    Being with you made me realize love doesn't have to be loud to be deep. It's in the comfort, the laughter, and the way you feel like home to me.
+                </p>
+            </div>
+            
+            <div class="flex justify-center">
+                <button onclick="nextStep()" 
+                    class="bg-rose-500 hover:bg-[#9f1239] transition-colors text-white text-sm uppercase tracking-widest px-8 py-3.5 rounded-2xl flex items-center gap-3">
+                    Keep reading B❤️
+                    <span class="text-base">♡</span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Step 1 -->
+        <div id="content-1" class="journey-step hidden">
+            <div class="text-center mb-10">
+                <p class="uppercase text-rose-400 text-xs tracking-[0.065em] font-medium mb-3">Chapter Two</p>
+                <h2 class="font-serif text-[2.75rem] sm:text-[3.5rem] leading-tight tracking-tight">Three reasons<br>I'm obsessed with you</h2>
+            </div>
+            
+            <!-- Interactive hearts -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12" id="reasons-grid">
+                <!-- Filled by JS -->
+            </div>
+            
+            <div class="text-center">
+                <button onclick="nextStep()" 
+                    class="bg-rose-500 hover:bg-[#9f1239] transition-colors text-white text-sm uppercase tracking-widest px-8 py-3.5 rounded-2xl flex items-center gap-3 mx-auto">
+                    I have a lot more reasons than these ♡
+                </button>
+            </div>
+        </div>
+        
+        <!-- Step 2 -->
+        <div id="content-2" class="journey-step hidden">
+            <div class="text-center mb-8">
+                <p class="uppercase text-rose-400 text-xs tracking-[0.065em] font-medium mb-3">Chapter Three</p>
+                <h2 class="font-serif text-[2.5rem] sm:text-[3rem] leading-tight tracking-tight"><span class="text-rose-500">A sweet bribe🤫🤫</span></h2>
+            </div>
+            
+            <!-- Chocolate promise card -->
+            <div class="relative mx-auto max-w-md bg-gradient-to-br from-rose-400 to-[#c026d3] text-white rounded-3xl overflow-hidden shadow-xl mb-10">
+                <!-- Chocolate ribbon -->
+                <div class="bg-amber-800 py-1 text-[11px] text-center tracking-[0.065em] text-amber-100 text-xs font-mono">——— LIMITED EDITION ———</div>
+                
+                <div class="p-10 pb-6 text-center">
+                    <p class="font-serif text-3xl leading-tight tracking-[-0.01em] mb-6">I promise to buy you<br>plenty Chocolates 🍫</p>
+                    
+                    <div class="h-px bg-white/30 my-6"></div>
+                    
+                    <p class="uppercase text-[10px] tracking-[0.065em] opacity-75">Plus I'll prepare you any meal of your choosing 😋…</p>
+                </div>
+            </div>
+            
+            <div class="italic text-sm text-center text-rose-500 leading-relaxed mb-8">
+                "Because you deserve sweetness<br>every single day, Sochi."<br><span class="block text-xs mt-3">— the guy who's crazy about you</span>
+            </div>
+            
+            <div class="flex justify-center">
+                <button onclick="nextStep()" 
+                    class="bg-rose-500 hover:bg-rose-600 transition-colors px-7 py-3 rounded-2xl text-white text-xs uppercase tracking-[0.065em]">
+                    One last chapter →
+                </button>
+            </div>
+        </div>
+        
+        <!-- Step 3: The Question -->
+        <div id="content-3" class="journey-step hidden">
+            <!-- Proposal -->
+            <div class="min-h-[500px] flex flex-col items-center justify-center text-center py-16 px-4">
+                <!-- Floating heart ring -->
+                <div id="heart-ring" 
+                     class="relative w-32 h-32 mx-auto mb-8">
+                    <div class="absolute inset-0 border-[12px] border-rose-300/40 rounded-full animate-[spin_25s_linear_infinite]"></div>
+                    <div class="absolute inset-0 flex items-center justify-center text-[4.5rem] text-rose-400">
+                        ♡
+                    </div>
+                </div>
+                
+                <p class="uppercase text-[10px] tracking-[0.15em] text-rose-400/80 font-medium mb-6">Final question</p>
+                
+                <h1 class="font-serif text-[2.5rem] sm:text-[3.5rem] leading-tight tracking-tight mb-4">
+                    Sochi<span class="text-rose-400">❤️</span>,
+                </h1>
+                
+                <h2 class="font-serif text-[2.25rem] sm:text-[3rem] leading-snug text-rose-500 tracking-tight max-w-xl mx-auto mb-3">
+                    will you be my Valentine—
+                </h2>
+                
+                <p class="text-[1.75rem] sm:text-[2.5rem] font-serif text-rose-400 leading-relaxed">
+                    today,<br>
+                    and every day<br>
+                    after that?
+                </p>
+                
+                <!-- Answer buttons -->
+                <div class="mt-14 flex flex-col sm:flex-row gap-4 w-full max-w-md mx-auto">
+                    <!-- Yes -->
+                    <button onclick="sayYes()" 
+                        id="yes-btn"
+                        class="flex-1 bg-rose-500 hover:bg-rose-600 active:scale-95 transition-all py-5 px-8 rounded-2xl text-white font-medium text-base flex items-center justify-center gap-2 shadow-lg">
+                        <span>Yes ♡</span>
+                    </button>
+                    
+                    <!-- No / Tease -->
+                    <button onclick="teaseNo()" 
+                        id="no-btn"
+                        class="flex-1 bg-white border-2 border-rose-300 hover:bg-rose-50 transition-all py-5 px-8 rounded-2xl text-rose-500 text-sm font-medium shadow-sm">
+                        I'll think about it…
+                    </button>
+                </div>
+                
+                <p class="text-[11px] text-rose-300/70 mt-10 italic">*you already know my answer is yes every day</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Celebration Screen -->
+<section id="celebration-section" class="hidden min-h-screen bg-[#2a0f1f] relative flex flex-col items-center justify-center text-white overflow-hidden">
+    <!-- Confetti canvas -->
+    <canvas id="confettiCanvas" class="absolute inset-0 z-0" width="1280" height="720"></canvas>
+    
+    <div class="relative z-10 text-center px-6">
+        <div class="mb-4 flex justify-center">
+            <span class="inline-block bg-rose-400 text-[#2a0f1f] text-xs uppercase font-bold tracking-[0.065em] px-6 py-1 rounded-full">She said yes</span>
+        </div>
+        
+        <h1 class="font-serif text-[4.5rem] sm:text-[6rem] md:text-[8rem] leading-none tracking-tight mb-2">Sochi❤️<span class="text-rose-400">♡</span></h1>
+        
+        <p class="text-base sm:text-lg md:text-xl text-rose-300 font-light tracking-wide mb-8">My forever Valentine</p>
+        
+        <!-- Chocolate banner -->
+        <div class="inline-flex items-center bg-amber-900/80 text-amber-100 rounded-3xl py-3 px-7 mb-10">
+            <span class="text-xl mr-3">🍫</span>
+            <span class="uppercase text-xs tracking-[0.065em] font-medium">Congrats, you just won yourself some good chocolate 🍫</span>
+        </div>
+        
+        <button onclick="restartJourney()" 
+            id="restart-btn"
+            class="bg-transparent border border-rose-300 hover:border-white px-8 py-4 rounded-full text-xs uppercase tracking-widest transition-colors">
+            Read our love letter again
+        </button>
+    </div>
+    
+    <!-- Bottom hearts -->
+    <div class="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-t from-[#2a0f1f] to-transparent flex items-end justify-center pb-6 gap-6 text-rose-400 text-xl">
+        ♡ &nbsp; ♡ &nbsp; ♡
+    </div>
+    
+    <!-- Screenshot reminder text -->
+    <div class="absolute bottom-16 left-0 right-0 text-center">
+        <p class="text-rose-400 text-[10px] tracking-widest uppercase">screenshot this and send it to me!!</p>
+    </div>
+</section>
+
+<script>
+    // Tailwind script already injected via CDN
+    
+    let currentStep = 0;
+    const totalSteps = 4;
+    
+    // Fake reasons
+    const reasons = [
+        {
+            emoji: "🌟",
+            title: "Your laugh",
+            desc: "Your laugh is my favorite sound. It's unguarded and real, and every time I hear it, it reminds me how lucky I am to be the one standing close enough to cause it. Your laugh does has a way of pulling me in without trying…It's effortless, it's you, and it's one of the things that made me fall even deeper."
+        },
+        {
+            emoji: "😍",
+            title: "Your eyes",
+            desc: "Your eyes, they have a quiet way of holding me. When you look at me, I feel seen without needing to explain anything."
+        },
+        {
+            emoji: "🍓",
+            title: "The way you love",
+            desc: "You love in a way that feels patient and honest. It doesn't rush me or demand anything…it just stays, and that's rare. You love so purely and fiercely, I still can't believe I'm the one you chose."
+        }
+    ];
+    
+    // Canvas floating hearts in hero
+    function createHeartCanvas() {
+        const canvas = document.getElementById("heartCanvas");
+        const ctx = canvas.getContext("2d");
+        
+        let w = canvas.width = window.innerWidth;
+        let h = canvas.height = window.innerHeight;
+        
+        window.addEventListener("resize", () => {
+            w = canvas.width = window.innerWidth;
+            h = canvas.height = window.innerHeight;
+        });
+        
+        class Heart {
+            constructor() {
+                this.x = Math.random() * w;
+                this.y = Math.random() * h + h;
+                this.size = Math.random() * 18 + 14;
+                this.speed = Math.random() * 0.7 + 0.55;
+                this.opacity = Math.random() * 0.65 + 0.35;
+                this.swing = Math.random() * 1.5;
+                this.angle = Math.random() * Math.PI * 2;
+            }
+            
+            update() {
+                this.y -= this.speed;
+                this.angle += 0.018;
+                this.x += Math.sin(this.angle) * this.swing;
+                
+                if (this.y < -30) {
+                    this.y = h + 20;
+                    this.x = Math.random() * w;
+                }
+            }
+            
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.opacity;
+                ctx.translate(this.x, this.y);
+                ctx.scale(this.size/22, this.size/22);
+                
+                ctx.fillStyle = "#fb7185";
+                
+                // Simple heart shape
+                ctx.beginPath();
+                ctx.moveTo(0, 8);
+                ctx.bezierCurveTo(-10, -3, -18, 5, 0, 18);
+                ctx.bezierCurveTo(18, 5, 10, -3, 0, 8);
+                ctx.fill();
+                
+                ctx.restore();
+            }
+        }
+        
+        const hearts = [];
+        for (let i = 0; i < 38; i++) {
+            hearts.push(new Heart());
+        }
+        
+        function animate() {
+            ctx.clearRect(0, 0, w, h);
+            
+            hearts.forEach(heart => {
+                heart.update();
+                heart.draw();
+            });
+            
+            requestAnimationFrame(animate);
+        }
+        
+        animate();
+    }
+    
+    // Canvas flying butterflies in hero
+    function createButterflyCanvas() {
+        const canvas = document.getElementById("butterflyCanvas");
+        const ctx = canvas.getContext("2d");
+        
+        let w = canvas.width = window.innerWidth;
+        let h = canvas.height = window.innerHeight;
+        
+        window.addEventListener("resize", () => {
+            w = canvas.width = window.innerWidth;
+            h = canvas.height = window.innerHeight;
+        });
+        
+        class Butterfly {
+            constructor() {
+                this.x = Math.random() * w;
+                this.y = Math.random() * h;
+                this.size = Math.random() * 20 + 15;
+                this.speedX = (Math.random() - 0.5) * 1.5;
+                this.speedY = (Math.random() - 0.5) * 1.5;
+                this.opacity = Math.random() * 0.4 + 0.3;
+                this.wingAngle = 0;
+                this.wingSpeed = Math.random() * 0.15 + 0.1;
+                this.hue = Math.random() * 40 + 200; // Blue range
+            }
+            
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                this.wingAngle += this.wingSpeed;
+                
+                // Gentle floating motion
+                this.x += Math.sin(this.wingAngle) * 0.8;
+                this.y += Math.cos(this.wingAngle * 0.5) * 0.5;
+                
+                // Wrap around edges
+                if (this.x < -50) this.x = w + 50;
+                if (this.x > w + 50) this.x = -50;
+                if (this.y < -50) this.y = h + 50;
+                if (this.y > h + 50) this.y = -50;
+            }
+            
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.opacity;
+                ctx.translate(this.x, this.y);
+                
+                // Calculate wing flap
+                const flapAmount = Math.sin(this.wingAngle * 2) * 0.3 + 0.7;
+                
+                // Draw butterfly emoji/shape
+                ctx.font = `${this.size}px serif`;
+                ctx.textAlign = "center";
+                ctx.textBaseline = "middle";
+                
+                // Use gradient for color variation
+                const gradient = ctx.createLinearGradient(-this.size/2, 0, this.size/2, 0);
+                gradient.addColorStop(0, `hsla(${this.hue}, 70%, 70%, ${this.opacity})`);
+                gradient.addColorStop(1, `hsla(${this.hue + 20}, 70%, 80%, ${this.opacity})`);
+                ctx.fillStyle = gradient;
+                
+                // Simple butterfly shape using emoji
+                ctx.fillText("🦋", 0, 0);
+                
+                ctx.restore();
+            }
+        }
+        
+        const butterflies = [];
+        for (let i = 0; i < 12; i++) {
+            butterflies.push(new Butterfly());
+        }
+        
+        function animateButterflies() {
+            ctx.clearRect(0, 0, w, h);
+            
+            butterflies.forEach(butterfly => {
+                butterfly.update();
+                butterfly.draw();
+            });
+            
+            requestAnimationFrame(animateButterflies);
+        }
+        
+        animateButterflies();
+    }
+    
+    // Render interactive reasons
+    function renderReasons() {
+        let html = '';
+        
+        reasons.forEach((reason, index) => {
+            html += `
+                <div onclick="revealReason(${index})" 
+                     id="reason-card-${index}"
+                     class="reason-card bg-white rounded-2xl p-6 cursor-pointer transition-all hover:border-rose-300 group h-full flex flex-col shadow-sm border border-rose-100">
+                    
+                    <div class="text-4xl mb-4 transition-transform group-hover:scale-110 duration-300">${reason.emoji}</div>
+                    <h5 class="font-serif text-xl text-rose-500 mb-1">${reason.title}</h5>
+                    <p class="text-xs text-rose-400/75 font-medium tracking-widest mb-3">click to open</p>
+                    
+                    <div id="reason-desc-${index}" 
+                         class="reason-desc hidden text-sm leading-relaxed text-rose-700 font-light mt-auto">
+                        ${reason.desc}
+                    </div>
+                </div>
+            `;
+        });
+        
+        document.getElementById("reasons-grid").innerHTML = html;
+    }
+    
+    let openedReasons = [];
+    
+    function revealReason(index) {
+        const descEl = document.getElementById(`reason-desc-${index}`);
+        const cardEl = document.getElementById(`reason-card-${index}`);
+        
+        if (!openedReasons.includes(index)) {
+            openedReasons.push(index);
+            descEl.classList.remove("hidden");
+            cardEl.style.borderColor = "#e11d48";
+            cardEl.style.boxShadow = "0 0 0 3px rgb(244 63 94 / 10%)";
+        }
+        
+        // If all are opened, show a small success toast
+        if (openedReasons.length === 3) {
+            setTimeout(() => {
+                const toastHTML = `
+                    <div id="all-reasons-toast" 
+                         class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-rose-500 text-white text-xs px-5 py-2 rounded-2xl shadow-lg flex items-center gap-2">
+                        <span>❤️</span> All my favorite things about you collected
+                    </div>
+                `;
+                if (!document.getElementById("all-reasons-toast")) {
+                    document.body.insertAdjacentHTML("beforeend", toastHTML);
+                    
+                    setTimeout(() => {
+                        const toast = document.getElementById("all-reasons-toast");
+                        if (toast) toast.style.transition = "transform 0.4s ease-out, opacity 0.4s ease-out";
+                        toast.style.transform = "translate(-50%, 40px)";
+                        toast.style.opacity = "0";
+                        setTimeout(() => toast.remove(), 400);
+                    }, 1700);
+                }
+            }, 220);
+        }
+    }
+    
+    // Step navigation
+    function showStep(n) {
+        document.querySelectorAll(".journey-step").forEach(step => {
+            step.classList.add("hidden");
+        });
+        
+        document.getElementById("content-" + n).classList.remove("hidden");
+        
+        // Update stepper dots
+        for (let i = 0; i < totalSteps; i++) {
+            const dot = document.getElementById("step-dot-" + i);
+            if (i <= n) {
+                dot.classList.remove("bg-rose-100");
+                dot.classList.add("bg-rose-400");
+                dot.querySelector("span").classList.remove("text-rose-300");
+                dot.querySelector("span").classList.add("text-white");
+            } else {
+                dot.classList.add("bg-rose-100");
+                dot.classList.remove("bg-rose-400");
+                dot.querySelector("span").classList.add("text-rose-300");
+                dot.querySelector("span").classList.remove("text-white");
+            }
+        }
+        
+        currentStep = n;
+    }
+    
+    function nextStep() {
+        if (currentStep < totalSteps - 1) {
+            showStep(currentStep + 1);
+        }
+    }
+    
+    function jumpToStep(n) {
+        showStep(n);
+        window.scrollTo({
+            top: document.getElementById("journey-section").offsetTop - 70,
+            behavior:'smooth'
+        });
+    }
+    
+    // Say Yes
+    function sayYes() {
+        document.getElementById("yes-btn").style.transitionDuration = '80ms';
+        document.getElementById("yes-btn").innerHTML = `
+            <span class="inline-flex items-center">
+                <span class="animate-pulse">YES ♡ YES ♡ YES ♡</span>
+            </span>
+        `;
+        
+        setTimeout(() => {
+            document.getElementById("journey-section").classList.add("hidden");
+            document.getElementById("celebration-section").classList.remove("hidden");
+            
+            // Trigger celebration confetti
+            launchConfetti();
+            
+            // Fake chocolate rain text after 900ms
+            setTimeout(() => {
+                createChocolateRain();
+            }, 900);
+        }, 320);
+    }
+    
+    // Tease "maybe"
+    function teaseNo() {
+        const btn = document.getElementById("no-btn");
+        const originalText = btn.textContent;
+        
+        btn.style.width = btn.offsetWidth + "px";
+        
+        btn.textContent = "Okay… you convinced me 🍫";
+        btn.classList.remove("border-rose-300", "text-rose-400");
+        btn.classList.add("bg-rose-400", "text-white", "border-transparent");
+        
+        setTimeout(() => {
+            btn.textContent = "I said YES already, silly ❤️";
+            
+            setTimeout(() => {
+                sayYes();
+            }, 420);
+        }, 1350);
+    }
+    
+    // Confetti for celebration
+    function launchConfetti() {
+        const canvas = document.getElementById("confettiCanvas");
+        const ctx = canvas.getContext("2d");
+        
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        const colors = ["#fb7185","#fda4af","#f43f5c","#e11d48","#9f1239"];
+        
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height - canvas.height;
+                this.size = Math.random() * 9 + 7;
+                this.speed = Math.random() * 14 + 11;
+                this.angle = Math.random() * 360;
+                this.color = colors[Math.floor(Math.random()*colors.length)];
+                this.rotation = Math.random() * 20;
+                this.spinSpeed = Math.random() > 0.5 ? 0.05 : -0.05;
+            }
+            
+            update() {
+                this.y += this.speed;
+                this.angle += this.spinSpeed * 12;
+                
+                // Gentle horizontal sway
+                this.x += Math.sin(this.y / 30) * 1.4;
+            }
+            
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.angle * Math.PI / 180);
+                
+                ctx.fillStyle = this.color;
+                ctx.font = `${this.size}px serif`;
+                ctx.textAlign = "center";
+                ctx.fillText("♡", 0, 0);
+                
+                ctx.restore();
+            }
+        }
+        
+        let particles = [];
+        
+        for (let i = 0; i < 115; i++) {
+            particles.push(new Particle());
+        }
+        
+        function animateConfetti() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            let remaining = false;
+            
+            particles.forEach((p, i) => {
+                p.update();
+                p.draw();
+                
+                if (p.y < canvas.height + 30) {
+                    remaining = true;
+                } else if (Math.random() > 0.91) {
+                    // Respawn some hearts from top
+                    particles[i] = new Particle();
+                }
+            });
+            
+            if (remaining) {
+                requestAnimationFrame(animateConfetti);
+            }
+        }
+        
+        animateConfetti();
+    }
+    
+    // Fake chocolate pieces "falling"
+    function createChocolateRain() {
+        for (let i = 0; i < 12; i++) {
+            const chocolate = document.createElement("div");
+            chocolate.textContent = "🍫";
+            chocolate.style.position = "fixed";
+            chocolate.style.zIndex = "30";
+            chocolate.style.left = Math.random() * 100 + "vw";
+            chocolate.style.top = "-30px";
+            chocolate.style.fontSize = (Math.random() * 28 + 26) + "px";
+            chocolate.style.opacity = Math.random() * 0.8 + 0.6;
+            chocolate.style.transition = (Math.random() * 1100 + 1350) + "ms ease-in-out";
+            document.body.appendChild(chocolate);
+            
+            setTimeout(() => {
+                const delay = Math.random() * 320;
+                chocolate.style.transform = `translateY(${window.innerHeight + 120}px) rotate(${Math.random()*560}deg)`;
+            }, 80 * i);
+            
+            setTimeout(() => {
+                chocolate.remove();
+            }, 2100);
+        }
+    }
+    
+    function startJourney() {
+        document.getElementById("journey-section").classList.remove("hidden");
+        
+        // Scroll to journey
+        document.getElementById("journey-section").scrollIntoView({
+            behavior:'smooth'
+        });
+        
+        // Disable hero start button after use
+        document.getElementById("start-btn").style.opacity = 0.4;
+        document.getElementById("start-btn").style.pointerEvents = "none";
+    }
+    
+    function restartJourney() {
+        document.getElementById("celebration-section").classList.add("hidden");
+        document.getElementById("journey-section").classList.remove("hidden");
+        
+        // Reset to beginning
+        currentStep = 0;
+        openedReasons = [];
+        
+        showStep(0);
+        
+        // Reset reason cards
+        document.querySelectorAll(".reason-desc").forEach(el => {
+            el.classList.add("hidden");
+        });
+        
+        document.querySelectorAll(".reason-card").forEach(card => {
+            card.style.borderColor = "";
+            card.style.boxShadow = "";
+        });
+        
+        window.scrollTo(0, document.getElementById("journey-section").offsetTop - 50);
+    }
+    
+    // Initialize everything
+    window.onload = () => {
+        // Render reasons
+        renderReasons();
+        
+        // Show initial step
+        showStep(0);
+        
+        // Canvas hearts in hero
+        createHeartCanvas();
+        
+        // Canvas butterflies in hero
+        createButterflyCanvas();
+        
+        // Keyboard support for next step
+        document.addEventListener("keydown", function(e) {
+            // Only allow right arrow within journey section
+            if (e.key === "ArrowRight" && 
+                !document.getElementById("journey-section").classList.contains("hidden") &&
+                !document.getElementById("celebration-section").classList.contains("hidden") === false) {
+                
+                e.preventDefault();
+                if (currentStep < 3) {
+                    nextStep();
+                }
+            }
+        });
+        
+        // Fake audio init
+        console.log("%c❤️ Hi Sochi. He really loves you. Happy Valentine's Day ♡", 
+            "color:#e11d48;font-weight:500;font-size:14px");
+    }
+</script>
+```
+
+</body>
+</html>
